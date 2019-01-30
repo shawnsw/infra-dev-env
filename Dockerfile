@@ -4,6 +4,7 @@ LABEL maintainer="shawn.wang@redhat.com"
 
 ARG KUBECTL_VERSION=v1.13.2
 ARG TERRAFORM_VERSION=0.11.11
+ARG KOPS_VERSION=1.11.0
 
 # update and install essential packages
 RUN yum update -y \
@@ -22,6 +23,10 @@ RUN curl -sSL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terr
 RUN curl -sSL https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
 
+# install kops
+RUN curl -sSL https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}/kops-linux-amd64 -o /usr/local/bin/kops \
+    && chmod +x /usr/local/bin/kops
+
 # install awscli tool
 RUN /usr/bin/pip install awscli
 
@@ -36,4 +41,5 @@ RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc \
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
-CMD /bin/bash -c /entrypoint.sh
+ENTRYPOINT [ "/bin/bash", "-c" ]
+CMD [ "/entrypoint.sh" ]
