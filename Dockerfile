@@ -5,6 +5,7 @@ LABEL maintainer="shawn.wang@redhat.com"
 ARG KUBECTL_VERSION=v1.13.2
 ARG TERRAFORM_VERSION=0.11.11
 ARG KOPS_VERSION=1.11.0
+ARG OPENSHIFT_VERSION=v3.11.0-0cbc58b
 
 # update and install essential packages
 RUN yum update -y \
@@ -13,6 +14,16 @@ RUN yum update -y \
 
 # install ansible
 RUN yum install ansible -y
+
+# install ansible tower cli tool
+RUN pip install ansible-tower-cli
+
+# install openshift cli
+RUN export OPENSHIFT_VERSION_NUMBER=$(echo $OPENSHIFT_VERSION | cut -d'-' -f1) \
+    && curl -sSL https://github.com/openshift/origin/releases/download/${OPENSHIFT_VERSION_NUMBER}/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz -o /tmp/oc.tar.gz \
+    && tar -zxvf /tmp/oc.tar.gz \
+    && cd /tmp/openshift-origin-client-tools-${OPENSHIFT_VERSION}-linux-64bit \
+    && mv oc /usr/sbin/
 
 # install terraform
 RUN curl -sSL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o ./terraform.zip \
