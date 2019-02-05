@@ -20,8 +20,8 @@ RUN pip install ansible-tower-cli
 
 # install openshift cli
 RUN export OPENSHIFT_VERSION_NUMBER=$(echo $OPENSHIFT_VERSION | cut -d'-' -f1) \
-    && curl -sSL https://github.com/openshift/origin/releases/download/${OPENSHIFT_VERSION_NUMBER}/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz -o /tmp/oc.tar.gz \
-    && tar -zxvf /tmp/oc.tar.gz \
+    && curl -sSL https://github.com/openshift/origin/releases/download/${OPENSHIFT_VERSION_NUMBER}/openshift-origin-client-tools-${OPENSHIFT_VERSION}-linux-64bit.tar.gz -o /tmp/oc.tar.gz \
+    && tar -zxvf /tmp/oc.tar.gz --directory /tmp/ \
     && cd /tmp/openshift-origin-client-tools-${OPENSHIFT_VERSION}-linux-64bit \
     && mv oc /usr/sbin/
 
