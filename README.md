@@ -9,6 +9,7 @@ A docker image that contains the necessary tools for doing Infrastructure Develo
 * Openshift CLI
 * Terraform
 * kubectl
+* Kubernetes Tools
 * kops
 * AWS CLI
 * Google Cloud CLI
@@ -33,6 +34,10 @@ A docker image that contains the necessary tools for doing Infrastructure Develo
 `docker run shawnxlw/ide "az find --search-query vm"`
 
 ## Release Notes
+
+7/02/19: v1.2
+
+* Added Kubernetes Tools
 
 5/02/19: v1.1
 

@@ -34,6 +34,10 @@ RUN curl -sSL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terr
 RUN curl -sSL https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
 
+# install kubernetes tools
+RUN curl -sSL https://codeload.github.com/shawnxlw/kubernetes-tools/zip/v1.2.0 -o ktools.zip \
+    && unzip ktools.zip && mv kubernetes-tools-1.2.0/bin/* /usr/local/bin/ && mv kubernetes-tools-1.2.0/completion/__completion /usr/local/bin/__completion && rm -rf kubernetes-tools* \
+
 # install kops
 RUN curl -sSL https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}/kops-linux-amd64 -o /usr/local/bin/kops \
     && chmod +x /usr/local/bin/kops

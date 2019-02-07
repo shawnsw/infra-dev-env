@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "Infrastructure Development Environment v1.0\n"
+echo -e "Infrastructure Development Environment v1.2\n"
 
 echo "Versions:"
 sleep 0.5
@@ -18,6 +18,8 @@ terraform --version | head -1
 echo -n "kops: " && kops version | head -1 | cut -d' ' -f2
 # kubectl
 echo -n "kubectl: " && kubectl version --short=true 2>/dev/null | head -1 | cut -d' ' -f3
+# ktools
+ktools | head -1
 # awscli
 pip list 2>/dev/null|grep awscli
 # gcloud
