@@ -8,6 +8,10 @@ sleep 0.5
 python --version | head -1
 # ansible
 ansible --version | head -1
+# tower-cli
+tower-cli --version | head -1
+# oc
+oc version | head -1
 # teeraform
 terraform --version | head -1
 # kops
@@ -21,4 +25,4 @@ echo -n "gcloud: " && gcloud --version |head -1 | cut -d' ' -f4
 # azure
 az --version | head -1
 
-echo -e "\nUsage: docker run -ti shawnxlw/infra-dev-env bash"
+echo -e "\nUsage: docker run -ti shawnxlw/ide bash"
