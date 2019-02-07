@@ -3,6 +3,7 @@ FROM centos:centos7
 LABEL maintainer="shawn.wang@redhat.com"
 
 ARG KUBECTL_VERSION=v1.13.2
+ARG KTOOLS_VERSION=1.2.0
 ARG TERRAFORM_VERSION=0.11.11
 ARG KOPS_VERSION=1.11.0
 ARG OPENSHIFT_VERSION=v3.11.0-0cbc58b
@@ -35,8 +36,8 @@ RUN curl -sSL https://storage.googleapis.com/kubernetes-release/release/${KUBECT
     && chmod +x /usr/local/bin/kubectl
 
 # install kubernetes tools
-RUN curl -sSL https://codeload.github.com/shawnxlw/kubernetes-tools/zip/v1.2.0 -o ktools.zip \
-    && unzip ktools.zip && mv kubernetes-tools-1.2.0/bin/* /usr/local/bin/ && mv kubernetes-tools-1.2.0/completion/__completion /usr/local/bin/__completion && rm -rf kubernetes-tools* \
+RUN curl -sSL https://codeload.github.com/shawnxlw/kubernetes-tools/zip/v${KTOOLS_VERSION} -o ktools.zip \
+    && unzip ktools.zip && mv kubernetes-tools-${KTOOLS_VERSION}/bin/* /usr/local/bin/ && mv kubernetes-tools-${KTOOLS_VERSION}/completion/__completion /usr/local/bin/__completion && rm -rf kubernetes-tools*
 
 # install kops
 RUN curl -sSL https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}/kops-linux-amd64 -o /usr/local/bin/kops \
