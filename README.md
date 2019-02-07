@@ -2,9 +2,11 @@
 
 A docker image that contains the necessary tools for doing Infrastructure Development.
 
-### Tools
+## Tools
 
 * Ansible
+* Ansible Tower CLI
+* Openshift CLI
 * Terraform
 * kubectl
 * kops
@@ -12,7 +14,7 @@ A docker image that contains the necessary tools for doing Infrastructure Develo
 * Google Cloud CLI
 * Azure CLI
 
-### Usage
+## Usage
 
 #### interactive shell
 
@@ -29,3 +31,15 @@ A docker image that contains the necessary tools for doing Infrastructure Develo
 #### adhoc commands
 
 `docker run shawnxlw/ide "az find --search-query vm"`
+
+## Release Notes
+
+5/02/19: v1.1
+
+* Added Ansible Tower CLI
+
+* Added Openshift CLI
+
+30/01/19: v1.0
+
+* Initial release
