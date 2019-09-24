@@ -3,6 +3,7 @@ FROM centos:centos7
 LABEL maintainer="shawn.wang@redhat.com"
 
 ARG KUBECTL_VERSION=v1.13.2
+ARG EKSCTL_VERSION=0.6.0
 ARG KTOOLS_VERSION=1.2.0
 ARG TERRAFORM_VERSION=0.11.11
 ARG KOPS_VERSION=1.11.0
@@ -34,6 +35,11 @@ RUN curl -sSL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terr
 # install kubectl
 RUN curl -sSL https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
+
+# install eksctl
+RUN curl -SL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}/eksctl_Linux_amd64.tar.gz -o eksctl.tar.gz \
+    && tar -zxvf /tmp/eksctl.tar.gz --directory /tmp/ \
+    && mv /tmp/eksctl /usr/sbin/
 
 # install kubernetes tools
 RUN curl -sSL https://codeload.github.com/shawnxlw/kubernetes-tools/zip/v${KTOOLS_VERSION} -o ktools.zip \
