@@ -6,7 +6,7 @@ ARG KUBECTL_VERSION=v1.13.2
 ARG EKSCTL_VERSION=0.6.0
 ARG KTOOLS_VERSION=1.2.0
 ARG TERRAFORM_VERSION=0.11.11
-ARG KOPS_VERSION=1.11.0
+ARG KOPS_VERSION=1.13.1
 ARG OPENSHIFT_VERSION=v3.11.0-0cbc58b
 
 # update and install essential packages
@@ -46,7 +46,7 @@ RUN curl -sSL https://codeload.github.com/shawnxlw/kubernetes-tools/zip/v${KTOOL
     && unzip ktools.zip && mv kubernetes-tools-${KTOOLS_VERSION}/bin/* /usr/local/bin/ && mv kubernetes-tools-${KTOOLS_VERSION}/completion/__completion /usr/local/bin/__completion && rm -rf kubernetes-tools*
 
 # install kops
-RUN curl -sSL https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}/kops-linux-amd64 -o /usr/local/bin/kops \
+RUN curl -k -sSL https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}/kops-linux-amd64 -o /usr/local/bin/kops \
     && chmod +x /usr/local/bin/kops
 
 # install awscli tool
