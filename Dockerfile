@@ -37,7 +37,7 @@ RUN curl -sSL https://storage.googleapis.com/kubernetes-release/release/${KUBECT
     && chmod +x /usr/local/bin/kubectl
 
 # install eksctl
-RUN curl -SL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}/eksctl_Linux_amd64.tar.gz -o eksctl.tar.gz \
+RUN curl -SL https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}/eksctl_Linux_amd64.tar.gz -o /tmp/eksctl.tar.gz \
     && tar -zxvf /tmp/eksctl.tar.gz --directory /tmp/ \
     && mv /tmp/eksctl /usr/sbin/
 
